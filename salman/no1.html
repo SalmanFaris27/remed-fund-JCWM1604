@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HURUF VOCAL</title>
+</head>
+<body>
+    <h1>Masukan kata:</h1>
+    <input type="text" id="s1">
+    <br>
+    <button id="button" onclick="vawels()">
+        HITUNG VOCAL
+    </button>
+    <button id="button" onclick="kata()">
+        HURUF VOCAL
+    </button>
+    <button id="button" onclick="huruf()">
+        TANPA VOCAL
+    </button>
+    <p id="s2"></p>
+
+<script>
+
+
+function vawels(){
+    let str = document.getElementById('s1').value
+    let a, i, u, e, o
+    let hasil =0
+
+    if(str.split('').includes('a')){
+        a=1
+    }else{
+        a=0
+    }
+
+    if(str.split('').includes('a')){
+        i=1
+    }else{
+        i=0
+    }
+
+    if(str.split('').includes('a')){
+        u=1
+    }else{
+        u=0
+    }
+
+    if(str.split('').includes('a')){
+        e=1
+    }else{
+        e=0
+    }
+
+    if(str.split('').includes('a')){
+        o=1
+    }else{
+        o=0
+    }
+
+    hasil = a+i+u+e+o
+    document.getElementById('s2').innerHTML =hasil
+}
+
+function huruf(){
+    let word = document.getElementById('s1').value
+    var result = word.replace(/[a,i,u,e,o,A,I,U,E,O]/g,'')
+    document.getElementById('s2').innerHTML = result
+}
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUCT</title>
+    <style>
+        tr,td,th,table{
+          border-collapse: collapse;
+          border:1px solid black;
+          padding:1px;    
+            } 
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>FORM PRODUCT</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="renderData">
+               
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>#</td>
+                    <td><input type="text" placeholder="masukan nama barang" id="kegiatan"></td>
+                    <td><input type="text" placeholder="masukan harga barang"></td>
+                    <td>food<input type="radio" name='category'>
+                    drink<input type="radio" name='category'>
+                    other<input type="radio" name='category'></td>
+                    <td><input type="button" value="add"></td>
+                </tr>
+
+            </tbody>
+        
+        </table>
+    </center>
+    
+</body>
+</html>
+<script>
+    class Product{
+        constructor(_name,_price){
+            this.name=_name
+            this.price=_price
+        }
+    }
+
+    var indexedit=-1
+    var indexdelete=-1
+
+    var ListProduct=[
+        new Product('Coca Cola',5000),
+        new Product('bengbeng',4500),
+        new Product('fanta',3500)
+    ]
+
+    const printData=()=>{
+        var result=ListProduct.map((val,index)=>{
+            if(indexdelete==index){
+                return  `<tr>
+                    <td>${index+1}</td>
+                    <td>${val.name}</td>
+                    <td>${val.price}</td>
+
+                    <td>
+                        <input type="radio" name="inputradio" value=0>
+                        <input type="radio" name="inputradio" value=1>
+                        <input type="radio" name="inputradio" value=2>
+                    </td>
+                    <td>
+                        <input type="button" value="save" onClick="onDeleteYesClick(${index})">
+                        <input type="button" value="cancel" onClick="onDeleteNoClick()">
+                    </td>
+                    
+                </tr>`
+
+
+            }else if(indexedit == index){
+
+                return  `<tr>
+                    <td>${index+1}</td>
+                    <td>${val.name}</td>
+                    <td>${val.price}</td>
+                    <t>${val.category}</t
+                        <input type="radio" name="inputradio" value=0>
+                        <input type="radio" name="inputradio" value=1>
+                        <input type="radio" name="inputradio" value=2>
+                    </td>
+                    <td>
+                        <input type="button" onClick="onEditYesClick(${index})" value="Save">
+                        <input type="button" onClick="onEditNoClick()" value="Cancel">
+                    </td>
+                    
+                </tr>`
+            }
+            return  `<tr>
+                    <td>${index+1}</td>
+                    <td>${val.name}</td>
+                    <td>${val.price}</td>
+                    <t>${val.category}</t
+                        <input type="radio" name="inputradio" value=0>
+                        <input type="radio" name="inputradio" value=1>
+                        <input type="radio" name="inputradio" value=2>
+                    </td>
+                    <td>
+                        <input type="button" onClick="onDeleteClick(${index})" value="Delete">
+                        <input type="button" onClick="onEditClick()" value="Edit">
+                    </td>
+                    
+                </tr>`
+
+            })
+                document.getElementById('renderData').innerHTML=result.join('')
+        }
+const onDeleteClick=(index)=>{
+    indexdelete=index
+    printData()
+}
+
+const onEditClick=(index)=>{
+    indexedit=index
+    printData()
+}
+
+const onDeleteNoClick=()=>{
+    indexdelete=-1
+    printData()
+}
+
+const onDeleteYesClick=(index)=>{
+    ListProduct.splice(index,1)
+    printData()
+}
+
+const onEditNoClick=(index)=>{
+    indexedit=-1
+    printData()
+}
+
+const onEditYesClick=(index)=>{
+    var editName=document.getElementById('editname'+indexedit).value
+    var editPrice=document.getElementById('editprice'+indexedit).value
+    ListProduct[index].name=editName
+    ListProduct[index].price=editPrice
+    printData()
+    indexedit=-1
+
+
+}
+printData()
+
+const inputData=()=>{
+    var inputName=document.getElementById('Name').value
+    var inputPrice=document.getElementById('Price').value
+    var no=index+1
+    if(inputProduct && inputPrice){
+        var inputObj={no:no, name: inputName, price: inputPrice}
+        product.push(inputObj)
+        PrintData(product)
+    }else{
+        alert('anda belum input data')
+    }
+}
+</script>
+</html>
